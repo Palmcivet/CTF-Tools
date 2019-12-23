@@ -1,4 +1,4 @@
-# CTF-tool
+# CTF-Tool
 
 This is a simple tool for encode and decode
 
