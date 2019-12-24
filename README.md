@@ -1,6 +1,6 @@
 # CTF-Tool
 
-This is a simple tool for encode and decode
+This is a simple tool for encode and decode. Now I want to reform it into a web app, using react.
 
 ## Basic coding
 Use `-a --auto`, list the information of **string**.

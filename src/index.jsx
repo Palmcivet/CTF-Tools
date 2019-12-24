@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'mobx-react';
+import { Provider } from 'react-redux';
 import { App } from './Layouts/App';
-import { StoreTree } from "./MobX/StoreTree";
+import { StoreTree } from "./Redux/StoreTree";
 
 render(
     <Provider store={StoreTree}>
