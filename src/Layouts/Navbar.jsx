@@ -1,30 +1,56 @@
-import React, { Component } from 'react';
-import { Menu } from "element-react";
-import 'element-theme-default';
+import React, { Component } from "react";
+import { Menu, Icon, Layout } from 'antd';
 
-class Navbar extends Component {
-    constructor(props) {
-        super(props);
-        this.onSelect = this.onSelect.bind(this);
-        this.state = {
-            sidebarExists: false
-        };
-    }
+const { Header } = Layout;
+class NavBar extends Component {
+    state = {
+        current: 'logo',
+    };
 
-    onSelect() {
-    }
+    handleClick = e => {
+        console.log('click ', e);
+        this.setState({
+            current: e.key,
+        });
+    };
 
     render() {
         return (
-            <div>
-                <Menu defaultActive="1" className="el-menu-demo" mode="horizontal" onSelect={this.onSelect}>
-                    <Menu.Item index="1">主页</Menu.Item>
-                    <Menu.Item index="2">处理</Menu.Item>
-                    <Menu.Item index="3">管理</Menu.Item>
-                </Menu>
-            </div>
+            <Layout>
+                <Header
+                    style={{
+                        position: 'fixed',
+                        zIndex: 2,
+                        width: '100%',
+                        background: 'rgba(0, 0, 0, 0)'
+                    }}
+                >
+                    <Menu
+                        onClick={this.handleClick}
+                        selectedKeys={[this.state.current]}
+                        mode="horizontal"
+                    >
+                        <Menu.Item key="logo">
+                            <div className="logo">
+                                Home
+                            </div>
+                        </Menu.Item>
+                        <Menu.Item key="mail">
+                            <Icon type="mail" />
+                            Navigation One
+                        </Menu.Item>
+                        <Menu.Item key="app">
+                            <Icon type="appstore" />
+                            Navigation Two
+                        </Menu.Item>
+                        <Menu.Item key="alipay">
+                            Navigation Four
+                        </Menu.Item>
+                    </Menu>
+                </Header>
+            </Layout>
         );
     }
-}
+};
 
-export { Navbar };
+export { NavBar };

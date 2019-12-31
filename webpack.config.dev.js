@@ -39,17 +39,30 @@ module.exports = {
 				loader: 'babel-loader',
 				options: {
 					presets: ['@babel/env', '@babel/react'],
+					plugins: [
+						"@babel/plugin-proposal-class-properties",
+						"react-hot-loader/babel",
+						[
+							"import",
+							{
+								"libraryName": "antd",
+								"libraryDirectory": "es",
+								"style": "css"
+							}
+						]
+					]
 				}
 			}
 		}, {
-			test: /\.less$/,
-			loader: 'less-loader',
+			test: /\.css/,
+			use: [{
+				loader: 'style-loader',
+			}, {
+				loader: 'css-loader'
+			}]
 		}, {
-			test: /\.css$/,
-			loader: [
-				'style-loader',
-				'css-loader'
-			],
+			test: /\.less/,
+			loader: 'less-loader',
 		}, {
 			test: /\.(eot|woff|woff2|ttf)([\\?]?.*)$/,
 			loader: 'file-loader'
