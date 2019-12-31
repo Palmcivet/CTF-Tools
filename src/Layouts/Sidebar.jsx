@@ -32,8 +32,9 @@ class SideBar extends Component {
                     selectedKeys={[this.state.current]}
                     mode="inline"
                     style={{
-                        width: 256,
-                        overflowed: 'auto',
+                        width: 250,
+                        overflow: 'auto',
+                        height: '100vh'
                     }}
                 >
                     <SubMenu
