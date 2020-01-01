@@ -32,8 +32,8 @@ class SideBar extends Component {
                     selectedKeys={[this.state.current]}
                     mode="inline"
                     style={{
-                        width: 250,
-                        overflow: 'auto',
+                        width: 256,
+                        overflowY: 'auto',
                         height: '100vh'
                     }}
                 >
@@ -42,7 +42,7 @@ class SideBar extends Component {
                         title={
                             <span>
                                 <Icon type="mail" />
-                                <span>Navigation One</span>
+                                <span>One</span>
                             </span>
                         }
                     >
@@ -56,7 +56,7 @@ class SideBar extends Component {
                         title={
                             <span>
                                 <Icon type="appstore" />
-                                <span>Navigation Two</span>
+                                <span>Two</span>
                             </span>
                         }
                     >
@@ -67,20 +67,15 @@ class SideBar extends Component {
                             <Menu.Item key="8">Option 8</Menu.Item>
                         </SubMenu>
                     </SubMenu>
-                    <SubMenu
-                        key="sub4"
-                        title={
-                            <span>
-                                <Icon type="setting" />
-                                <span>Navigation Three</span>
-                            </span>
-                        }
-                    >
-                        <Menu.Item key="9">Option 9</Menu.Item>
-                        <Menu.Item key="10">Option 10</Menu.Item>
-                        <Menu.Item key="11">Option 11</Menu.Item>
-                        <Menu.Item key="12">Option 12</Menu.Item>
-                    </SubMenu>
+                    <Menu.Item key="9">Option 9</Menu.Item>
+                    <Menu.Item key="10">Option 10</Menu.Item>
+                    <Menu.Item key="11">Option 11</Menu.Item>
+                    <Menu.Item key="12">Option 12</Menu.Item>
+                    <Menu.Item key="13">Option 12</Menu.Item>
+                    <Menu.Item key="14">Option 12</Menu.Item>
+                    <Menu.Item key="15">Option 12</Menu.Item>
+                    <Menu.Item key="16">Option 12</Menu.Item>
+                    <Menu.Item key="17">Option 12</Menu.Item>
                     <br />
                     <Switch
                         checked={this.state.theme === 'dark'}

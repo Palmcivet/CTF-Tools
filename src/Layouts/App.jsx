@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout, Icon, Row, Col } from 'antd';
 
+import { ToolBar } from './ToolBar';
 import { NavBar } from './NavBar';
 import { SideBar } from './SideBar';
 
@@ -8,47 +9,50 @@ const { Content, Sider, Footer } = Layout;
 
 const App = () => (
     <Layout>
-        <Row gutter={[16, 16]}>
-            <Col span={12}>
-                <NavBar />
-            </Col>
-        </Row>
+        <Layout style={{
+            position: 'fixed',
+            zIndex: 2,
+            width: '100%',
+            height: '48px',
+        }}>
+            <NavBar />
+        </Layout>
 
-        <Row>
-            <Col span={6} push={1}>
-                <SideBar />
-            </Col>
-            <Col span={18}>
-                <Layout
-                    style={{
-                        width: '100vh'
-                    }}
-                >
-                    <Content>
-                        Content
+        <Layout>
+            <Row gutter={[8, 8]}>
+                <Col span={12}>
+                    <Layout style={{
+                        height: '100vh',
+                    }}>
+                        <SideBar />
+                    </Layout>
+                </Col>
+                <Row gutter={[8, 8]}>
+                    <Col span={12}>
+                        <Layout>
+                            <Content>
+                                Content
                         <br />
+                                <br />
+                                <br />
+                                <br />
+                                Content
                         <br />
-                        <br />
-                        <br />
-                        Content
-                        <br />
-                    </Content>
-                </Layout>
-            </Col>
-        </Row>
+                            </Content>
+                            <ToolBar />
+                        </Layout>
+                    </Col>
+                </Row>
 
-        <Row gutter={[16, 16]}>
-            <Col span={12}>
-                <Footer
-                    style={{
+                <Col span={12}>
+                    <Footer style={{
                         textAlign: 'center',
-                        width: '100%',
-                    }}
-                >
-                    {new Date().getFullYear()} &copy; {" Powered by Ant Design. "}
-                </Footer>
-            </Col>
-        </Row>
+                    }}>
+                        {new Date().getFullYear()} &copy; {" Powered by Ant Design. "}
+                    </Footer>
+                </Col>
+            </Row>
+        </Layout>
     </Layout>
 );
 

@@ -16,14 +16,10 @@ class NavBar extends Component {
 
     render() {
         return (
-            <Header
-                style={{
-                    position: 'fixed',
-                    zIndex: 2,
-                    width: '100%',
-                    background: 'rgba(0, 0, 0, 0)'
-                }}
-            >
+            <Header style={{
+                background: 'rgba(0, 0, 0, 0)',
+                padding: '0'
+            }}>
                 <Menu
                     onClick={this.handleClick}
                     selectedKeys={[this.state.current]}
