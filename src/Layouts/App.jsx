@@ -1,11 +1,11 @@
 import React from 'react';
-import { Layout, Icon, Row, Col } from 'antd';
+import { Layout, Row, Col } from 'antd';
 
 import { ToolBar } from './ToolBar';
 import { NavBar } from './NavBar';
 import { SideBar } from './SideBar';
 
-const { Content, Sider, Footer } = Layout;
+const { Content } = Layout;
 
 const App = () => (
     <Layout>
@@ -43,14 +43,6 @@ const App = () => (
                         </Layout>
                     </Col>
                 </Row>
-
-                <Col span={12}>
-                    <Footer style={{
-                        textAlign: 'center',
-                    }}>
-                        {new Date().getFullYear()} &copy; {" Powered by Ant Design. "}
-                    </Footer>
-                </Col>
             </Row>
         </Layout>
     </Layout>
