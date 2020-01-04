@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Menu, Icon, Layout } from 'antd';
 
 const { Header } = Layout;
+
 class NavBar extends Component {
     state = {
         current: 'logo',
@@ -18,7 +19,8 @@ class NavBar extends Component {
         return (
             <Header style={{
                 background: 'rgba(0, 0, 0, 0)',
-                padding: '0'
+                padding: '0',
+                textAlign: 'center',
             }}>
                 <Menu
                     onClick={this.handleClick}
@@ -37,10 +39,10 @@ class NavBar extends Component {
                     <Menu.Item key="app">
                         <Icon type="appstore" />
                         Navigation Two
-                        </Menu.Item>
+                    </Menu.Item>
                     <Menu.Item key="alipay">
                         Navigation Four
-                        </Menu.Item>
+                    </Menu.Item>
                 </Menu>
             </Header>
         );

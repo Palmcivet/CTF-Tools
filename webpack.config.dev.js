@@ -25,7 +25,7 @@ module.exports = {
 	],
 	devServer: {
 		port: 8081,
-		open: true,
+		open: 'Firefox',
 		contentBase: OUTPUT,
 		proxy: {
 			'/': 'http://localhost:8081/index.bundle.html'
@@ -62,7 +62,7 @@ module.exports = {
 			}]
 		}, {
 			test: /\.less/,
-			loader: 'less-loader',
+			loader: 'style-loader!css-loader!less-loader',
 		}, {
 			test: /\.(eot|woff|woff2|ttf)([\\?]?.*)$/,
 			loader: 'file-loader'

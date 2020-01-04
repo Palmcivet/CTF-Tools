@@ -33,7 +33,7 @@ class SideBar extends Component {
                     mode="inline"
                     style={{
                         width: 256,
-                        overflowY: 'auto',
+                        overflowX: 'hidden',
                         height: '100vh'
                     }}
                 >
