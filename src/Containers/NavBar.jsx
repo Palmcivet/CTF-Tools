@@ -21,6 +21,7 @@ class NavBar extends Component {
                 background: 'rgba(0, 0, 0, 0)',
                 padding: '0',
                 textAlign: 'center',
+                height: '48px',
             }}>
                 <Menu
                     onClick={this.handleClick}

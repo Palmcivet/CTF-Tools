@@ -27,9 +27,6 @@ class SideBar extends Component {
             <div
                 style={{
                     width: 256,
-                    // overflowX: 'hidden',
-                    marginTop: '48px',
-                    height: 'calc(100vh - 48px)',
                 }}
             >
                 <Menu

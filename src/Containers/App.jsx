@@ -13,35 +13,32 @@ import { Foot } from './Foot';
 
 const App = () => (
     <Layout>
-        <Layout style={{
+        <nav style={{
             position: 'fixed',
-            zIndex: 2,
+            zIndex: 10,
             width: '100%',
-            height: '48px',
         }}>
             <NavBar />
-        </Layout>
+        </nav>
 
-        <Row type="flex" justify="space-between">
-            <Col>
-                <SideBar />
-            </Col>
-            <Col style={{
-                marginTop: '48px',
-                height: 'calc(100vh - 48px)',
+        <div style={{
+            marginTop: '48px',
+            height: 'calc(100vh - 48px)',
+            display: 'flex',
+            justifyContent: 'space-between',
+        }}>
+            <aside style={{
+                overflowX: 'hidden',
             }}>
-                <Main />
-                <Layout style={{
-                    bottom: '0px',
-                    alignSelf: 'flex-end',
-                }}>
-                    <Foot />
-                </Layout>
-            </Col>
-            <Col>
+                <SideBar />
+            </aside>
+
+            <Main />
+
+            <aside style={{}}>
                 <Tool />
-            </Col>
-        </Row>
+            </aside>
+        </div>
     </Layout >
 );
 

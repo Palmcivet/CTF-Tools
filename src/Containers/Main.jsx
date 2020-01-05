@@ -1,6 +1,7 @@
 import React from 'react';
-import { Layout, Row, Col } from 'antd';
+import { Layout, Input, Row, Col } from 'antd';
 
+const { TextArea } = Input;
 const { Content } = Layout;
 
 const textStyle = {
@@ -11,23 +12,16 @@ const textStyle = {
 
 const Main = () => {
     return (
-        <div>
-            <Row type="flex" justify="space-around" gutter={[24, 24]}>
-                <Col span={12}>
-                    <textarea style={textStyle}>raw</textarea>
-                </Col>
-                <Col span={12}>
-                    <div style={textStyle}>button</div>
-                </Col>
-            </Row >
-            <Row type="flex" justify="space-around" gutter={[24, 24]}>
-                <Col span={12}>
-                    <textarea style={textStyle}>decode</textarea>
-                </Col>
-                <Col span={12}>
-                    <textarea style={textStyle}>adjust</textarea>
-                </Col>
-            </Row>
+        <div style={{
+            justifCcontent: 'space-around',
+            alignContent: 'stretch',
+            alignItems: 'stretch',
+            flexFlow: 'row wrap',
+        }}>
+            <TextArea style={textStyle} value='raw' />
+            <div style={textStyle}>button</div>
+            <TextArea style={textStyle} value='adjust' />
+            <TextArea style={textStyle} value='decode' />
         </div>
     );
 };
