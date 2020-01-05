@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Tool extends Component {
-    render() {
-        return (
-            <div style={{
-                width: 300,
-                height: 300,
-                backgroundColor: 'grey',
-            }}>
-                Tool
-            </div>
-        );
-    }
-}
+const Tool = () => {
+    return (
+        <div style={{
+            width: 300,
+            height: '100vh',
+            backgroundColor: 'grey',
+        }}>
+            Tool
+        </div>
+    );
+};
 
 export { Tool };

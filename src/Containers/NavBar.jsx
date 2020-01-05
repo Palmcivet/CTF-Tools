@@ -5,7 +5,7 @@ const { Header } = Layout;
 
 class NavBar extends Component {
     state = {
-        current: 'logo',
+        current: 'app',
     };
 
     handleClick = e => {
@@ -27,21 +27,20 @@ class NavBar extends Component {
                     selectedKeys={[this.state.current]}
                     mode="horizontal"
                 >
-                    <Menu.Item key="logo">
-                        <div className="logo">
-                            Home
-                            </div>
+                    <Menu.Item key="home">
+                        HOME
                     </Menu.Item>
-                    <Menu.Item key="mail">
-                        <Icon type="mail" />
-                        Navigation One
-                        </Menu.Item>
                     <Menu.Item key="app">
-                        <Icon type="appstore" />
-                        Navigation Two
+                        APP
+                        </Menu.Item>
+                    <Menu.Item key="docs">
+                        DOCS
                     </Menu.Item>
-                    <Menu.Item key="alipay">
-                        Navigation Four
+                    <Menu.Item key="about">
+                        ABOUT
+                    </Menu.Item>
+                    <Menu.Item key="link">
+                        LINK
                     </Menu.Item>
                 </Menu>
             </Header>
