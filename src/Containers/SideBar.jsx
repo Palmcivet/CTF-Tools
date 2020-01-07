@@ -26,7 +26,7 @@ class SideBar extends Component {
         return (
             <div
                 style={{
-                    width: 256,
+                    width: 254,
                 }}
             >
                 <Menu

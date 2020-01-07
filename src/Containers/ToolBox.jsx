@@ -4,8 +4,9 @@ const ToolBox = () => {
     return (
         <div style={{
             width: 300,
-            height: 'calc(100vh - 48px)',
-            backgroundColor: 'grey',
+            height: 500,
+            backgroundColor: 'rgba(210, 219, 224, 0.3)',
+            filter: 'blur(5px)',
         }}>
             Tool
         </div>
