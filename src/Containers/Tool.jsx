@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Tool = () => {
+const ToolBox = () => {
     return (
         <div style={{
             width: 300,
@@ -12,4 +12,4 @@ const Tool = () => {
     );
 };
 
-export { Tool };
+export { ToolBox };

@@ -1,27 +1,45 @@
 import React from 'react';
-import { Layout, Input, Row, Col } from 'antd';
+import { Input } from 'antd';
+
+import { Foot } from './Foot';
 
 const { TextArea } = Input;
-const { Content } = Layout;
 
-const textStyle = {
-    width: '320px',
+const containerStyle = {
+    display: 'grid',
+    gridTemplateColumns: '50% 50%',
+    gridTemplateRows: '4fr 4fr 1fr',
+    gridGap: '15px 15px',
+    placeItems: 'center center',
+    justifyContent: 'stretch',
+    justifyContent: 'space-around',
+    alignContent: 'space-around',
+}
+
+const itemStyle = {
+    width: '360px',
     height: '240px',
-    backgroundColor: '#E6EFF4'
+    backgroundColor: '#E6EFF4',
+    placeSelf: 'center stretch',
+    resize: 'none',
+}
+
+const footStyle = {
+    gridColumnStart: 1,
+    gridColumnEnd: 3,
+    placeSelf: 'end center',
 }
 
 const Main = () => {
     return (
-        <div style={{
-            justifCcontent: 'space-around',
-            alignContent: 'stretch',
-            alignItems: 'stretch',
-            flexFlow: 'row wrap',
-        }}>
-            <TextArea style={textStyle} value='raw' />
-            <div style={textStyle}>button</div>
-            <TextArea style={textStyle} value='adjust' />
-            <TextArea style={textStyle} value='decode' />
+        <div style={containerStyle}>
+            <TextArea style={itemStyle} value='raw' />
+            <div style={itemStyle}>button</div>
+            <TextArea style={itemStyle} value='adjust' />
+            <TextArea style={itemStyle} value='decode' />
+            <div style={footStyle}>
+                <Foot />
+            </div>
         </div>
     );
 };
