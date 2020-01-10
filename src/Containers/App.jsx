@@ -3,7 +3,7 @@ import React from 'react';
 import { NavBar } from './NavBar';
 import { SideBar } from './SideBar';
 import { ToolBox } from './ToolBox';
-import { Main } from './Main';
+import { WorkSpace } from './WorkSpace';
 
 
 /**
@@ -42,7 +42,7 @@ const App = () => (
             gridArea: '2 / 2 / 3 / 3',
             placeSelf: 'center',
         }}>
-            <Main />
+            <WorkSpace />
         </main>
 
         <footer style={{

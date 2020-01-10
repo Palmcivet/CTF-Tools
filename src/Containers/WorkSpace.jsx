@@ -19,7 +19,7 @@ const itemStyle = {
     resize: 'none',
 }
 
-const Main = () => {
+const WorkSpace = () => {
     return (
         <div style={containerStyle}>
             <TextArea style={itemStyle} value='raw' />
@@ -30,4 +30,4 @@ const Main = () => {
     );
 };
 
-export { Main };
+export { WorkSpace };
