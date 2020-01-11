@@ -78,6 +78,12 @@ const encode = (string) => {
 	return result.join('=\r\n');
 };
 
+/**
+ * 加密仍存在 bug
+ * @param {String} raw - 原始字符串
+ * @param {String} mode - 模式：`decode`/`encode`
+ * @returns {String} 返回字符串
+ */
 const quotedPrintable = (raw, mode) => {
 	if (mode == 'decode') {
 		return decode(raw);

@@ -6,10 +6,10 @@
  */
 const base64 = (raw, mode) => {
     if (mode == 'decode') {
-        return window.btoa(raw);
+        return window.atob(raw);
     }
     else if (mode == 'encode') {
-        return window.atob(raw);
+        return window.btoa(raw);
     }
     else {
         return raw;
