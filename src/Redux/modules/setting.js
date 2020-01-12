@@ -66,5 +66,4 @@ const selectors = {
 
 };
 
-export default reducers;
-export { actions, creators, selectors };
+export { reducers, types, creators, selectors };
