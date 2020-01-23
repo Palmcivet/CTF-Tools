@@ -25,7 +25,7 @@ module.exports = {
 	],
 	devServer: {
 		port: 8081,
-		open: 'Firefox',
+		open: true,	//'Firefox'
 		contentBase: OUTPUT,
 		proxy: {
 			'/': 'http://localhost:8081/index.bundle.html'

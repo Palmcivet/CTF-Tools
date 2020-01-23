@@ -1,8 +1,8 @@
 import { SideTree, retrieve } from '../../Components/SideTree';
 
 const initState = {
-    rawText: "",
-    resText: "",
+    rawText: "raw",
+    resText: "res",
     encoding: "",
     mode: true, // true - decode | false - encode
     title: "",
@@ -46,32 +46,33 @@ const creators = {
 const reducers = (state = initState, action) => {
     switch (action.type) {
         case types.CHANGE_ENCODING:
+            console.info(action.encoding);
             return {
                 encoding: action.encoding,
                 ...state
             }
         case types.CHANGE_TEXT:
-            return {
+            console.info(state);
+            state = Object.assign(state, {
                 rawText: action.rawText,
-                ...state
-            }
+            });
+            return state;
         case types.DECODE:
-            return {
+            return Object.assign(state, {
                 resText: retrieve(state.encoding)(state.rawText, "decode"),
-                ...state
-            }
+            })
         case types.ENCODE:
-            return {
+            return Object.assign(state, {
                 resText: retrieve(state.encoding)(state.rawText, "encode"),
-                ...state
-            }
+            })
         default:
             return state;
     }
 };
 
 const selectors = {
-
+    getRawText: state => state.workspace.rawText,
+    getResText: state => state.workspace.resText,
 };
 
 export { reducers, types, creators, selectors };

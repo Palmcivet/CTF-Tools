@@ -1,4 +1,4 @@
-const theme = {
+const themeType = {
     blue: "blue",
     green: "green",
     yellow: "yellow",
@@ -7,7 +7,7 @@ const theme = {
 
 const initState = {
     darkMode: false,
-    theme: theme.blue,
+    theme: themeType.blue,
     sideBar: true,
 };
 
