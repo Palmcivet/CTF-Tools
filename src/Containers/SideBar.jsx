@@ -1,72 +1,64 @@
 import React, { Component } from 'react';
-import { Menu, Icon, Switch } from 'antd';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Menu } from 'antd';
+
+import { SideTree } from '../Components/SideTree';
+import { creators as workActions } from '../Controllers/modules/workspace';
 
 const { SubMenu } = Menu;
 
-class SideBar extends Component {
+class rawSideBar extends Component {
     state = {
         theme: 'light',
         current: '1',
     };
 
-    changeTheme = value => {
-        this.setState({
-            theme: value ? 'dark' : 'light',
-        });
-    };
-
     handleClick = e => {
-        console.log('click ', e);
         this.setState({
             current: e.key,
         });
+        this.props.changeEncoding(e.key);
     };
 
     render() {
         return (
-            <div
-                style={{
-                    width: 254,
-                }}
-            >
+            <div style={{ width: 254 }}>
                 <Menu
                     theme={this.state.theme}
                     onClick={this.handleClick}
-                    defaultOpenKeys={['Base']}
+                    defaultOpenKeys={[SideTree[0][[0]]]}
                     selectedKeys={[this.state.current]}
                     mode="inline"
                 >
-                    <Menu.Item key="0">Base 0</Menu.Item>
-                    <SubMenu key="Base" title="Base">
-                        <Menu.Item key="1">Base 72</Menu.Item>
-                        <Menu.Item key="2">Base 97</Menu.Item>
-                        <Menu.Item key="3">Option 3</Menu.Item>
-                        <Menu.Item key="4">Option 4</Menu.Item>
-                    </SubMenu>
-                    <SubMenu
-                        key="sub2"
-                        title={<Icon type="appstore" />}
-                    >
-                        <Menu.Item key="5">Option 5</Menu.Item>
-                        <Menu.Item key="6">Option 6</Menu.Item>
-                        <SubMenu key="sub3" title="Submenu">
-                            <Menu.Item key="7">Option 7</Menu.Item>
-                            <Menu.Item key="8">Option 8</Menu.Item>
+                    {SideTree.map((cluster) => (
+                        <SubMenu key={cluster[0]} title={cluster[1]}>
+                            {Object.values(cluster[2]).map((item, index = 0) => (
+                                // TODO: SideTree 设计不合理
+                                <Menu.Item key={Object.keys(cluster[2])[index]}>
+                                    {item["TAG"]}
+                                </Menu.Item>
+                            ))}
                         </SubMenu>
-                    </SubMenu>
-                    <Menu.Item key="9">Option 9</Menu.Item>
-                    <Menu.Item key="10">Option 10</Menu.Item>
-                    <Menu.Item key="11">Option 11</Menu.Item>
-                    <Menu.Item key="12">Option 12</Menu.Item>
-                    <Menu.Item key="13">Option 12</Menu.Item>
-                    <Menu.Item key="14">Option 12</Menu.Item>
-                    <Menu.Item key="15">Option 12</Menu.Item>
-                    <Menu.Item key="16">Option 12</Menu.Item>
-                    <Menu.Item key="17">Option 12</Menu.Item>
+                    ))}
                 </Menu>
             </div >
         );
     }
 }
+
+const mapStateToProps = (state, props) => {
+    return {
+        theme: state.theme,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        ...bindActionCreators(workActions, dispatch),
+    }
+};
+
+const SideBar = connect(mapStateToProps, mapDispatchToProps)(rawSideBar);
 
 export { SideBar };
