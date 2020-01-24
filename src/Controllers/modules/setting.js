@@ -1,13 +1,8 @@
-const themeType = {
-    blue: "blue",
-    green: "green",
-    yellow: "yellow",
-    orange: "orange",
-};
+import { ThemeType } from '../../Configurations/Config';
 
 const initState = {
     darkMode: false,
-    theme: themeType.blue,
+    theme: ThemeType.BLUE,
     sideBar: true,
 };
 
@@ -44,18 +39,18 @@ const reducers = (state = initState, action) => {
     switch (action.type) {
         case types.TURN_DARKMODE:
             return {
+                ...state,
                 darkMode: !state.darkMode,
-                ...state
             }
         case types.CHANGE_THEME:
             return {
+                ...state,
                 theme: state.theme,
-                ...state
             }
         case types.TOGGLE_SIDEBAR:
             return {
+                ...state,
                 sideBar: !state.state,
-                ...state
             }
         default:
             return state;

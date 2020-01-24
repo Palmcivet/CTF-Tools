@@ -3,6 +3,7 @@ import { Input } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { ButtonArea } from '../Components/ButtonArea';
 import { creators as workActions, selectors } from '../Controllers/modules/workspace';
 
 const { TextArea } = Input;
@@ -50,8 +51,9 @@ class rawWorkSpace extends Component {
                     placeholder='输入'
                     allowClear
                 />
-                {/* TODO:引入工具栏，目前先不管 */}
-                <div style={itemStyle}>button</div>
+                <div style={itemStyle}>
+                    <ButtonArea />
+                </div>
                 <TextArea
                     style={itemStyle}
                     value={rawText}
@@ -70,8 +72,6 @@ class rawWorkSpace extends Component {
 };
 
 const mapStateToProps = (state, props) => {
-    console.log(state);
-
     return {
         rawText: selectors.getRawText(state),
         resText: selectors.getResText(state),

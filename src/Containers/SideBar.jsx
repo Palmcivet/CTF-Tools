@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Menu } from 'antd';
 
-import { SideTree } from '../Components/SideTree';
+import { SideTree } from '../Configurations/SideTree';
 import { creators as workActions } from '../Controllers/modules/workspace';
 
 const { SubMenu } = Menu;
@@ -32,14 +32,23 @@ class rawSideBar extends Component {
                     mode="inline"
                 >
                     {SideTree.map((cluster) => (
-                        <SubMenu key={cluster[0]} title={cluster[1]}>
-                            {Object.values(cluster[2]).map((item, index = 0) => (
+                        Array.isArray(cluster)
+                            ?
+                            <SubMenu key={cluster[0]} title={cluster[1]}>
+                                {Object.values(cluster[2]).map((item, index = 0) => (
+                                    // TODO: SideTree 设计不合理
+                                    <Menu.Item key={Object.keys(cluster[2])[index]}>
+                                        {item["TAG"]}
+                                    </Menu.Item>
+                                ))}
+                            </SubMenu>
+                            :
+                            Object.values(cluster).map((item, index = 0) => (
                                 // TODO: SideTree 设计不合理
-                                <Menu.Item key={Object.keys(cluster[2])[index]}>
+                                <Menu.Item key={Object.keys(cluster)[index]}>
                                     {item["TAG"]}
                                 </Menu.Item>
-                            ))}
-                        </SubMenu>
+                            ))
                     ))}
                 </Menu>
             </div >

@@ -1,11 +1,17 @@
-import { SideTree, retrieve } from '../../Components/SideTree';
+import { retrieve, te } from '../../Configurations/SideTree';
 
 const initState = {
     rawText: "raw",
     resText: "res",
-    encoding: "",
+    encoding: "base64",
+    key: "",
     mode: true, // true - decode | false - encode
-    title: "",
+    comment: {
+        title: "",
+    },
+    widget: {
+
+    }
 };
 
 // action types
@@ -37,34 +43,38 @@ const creators = {
 /**
  * reducers
  * @param {Object} state
- * @param {string} state.rawText
- * @param {string} state.encoding
- * @param {boolean} state.mode
- * @param {string} state.title
+ * @param {String} state.rawText
+ * @param {String} state.encoding
+ * @param {Boolean} state.mode
+ * @param {String} state.title
  * @param {Object} action
  */
 const reducers = (state = initState, action) => {
     switch (action.type) {
         case types.CHANGE_ENCODING:
-            console.info(action.encoding);
             return {
+                ...state,
                 encoding: action.encoding,
-                ...state
-            }
+            };
         case types.CHANGE_TEXT:
-            console.info(state);
-            state = Object.assign(state, {
+            return {
+                ...state,
                 rawText: action.rawText,
-            });
-            return state;
+            };
         case types.DECODE:
-            return Object.assign(state, {
+            console.log(state.encoding, state.rawText);
+            return {
+                ...state,
                 resText: retrieve(state.encoding)(state.rawText, "decode"),
-            })
+            };
         case types.ENCODE:
-            return Object.assign(state, {
-                resText: retrieve(state.encoding)(state.rawText, "encode"),
-            })
+            console.log(te(state.encoding));
+            console.log(retrieve(state.encoding));
+            let res = retrieve(state.encoding)(state.rawText, "encode");
+            return {
+                ...state,
+                resText: res,
+            };
         default:
             return state;
     }
