@@ -3,19 +3,17 @@
  * @author: Palm Civet
  */
 
-const ThemeType = {
+const THEME_TYPE = {
 	BLUE: "blue",
 	GREEN: "green",
 	YELLOW: "yellow",
 	ORANGE: "orange",
 };
 
-const cipherMode = {
+const CIPHER_MODE = {
 	DECODE: "decode",
 	ENCODE: "encode",
 	BRUTE: "brute",
 };
 
-const widget = {};
-
-export { ThemeType };
+export { THEME_TYPE, CIPHER_MODE };

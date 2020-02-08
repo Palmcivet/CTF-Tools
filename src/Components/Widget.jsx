@@ -1,12 +1,12 @@
 import React from 'react';
-import { InputNumber } from 'antd';
+import { InputNumber, Input } from 'antd';
 
-function onChange(value) {
-    console.log('changed', value);
-}
+const rInputNumber = (props) => (
+    <InputNumber min={1} max={10} defaultValue={3} onChange={props.onChange} />
+);
 
-const rInputNumber = () => (
-    <InputNumber min={1} max={10} defaultValue={3} onChange={onChange} />
-)
+const rInput = (props) => (
+    <Input placeholder={props} />
+);
 
-export { rInputNumber };
+export { rInputNumber, rInput };

@@ -1,52 +1,44 @@
 import React, { Component } from "react";
-import { Menu, Icon, Layout } from 'antd';
+import { Menu, Icon, Layout } from "antd";
 
 const { Header } = Layout;
 
 class NavBar extends Component {
-    state = {
-        current: 'app',
-    };
+	state = {
+		current: "app",
+	};
 
-    handleClick = e => {
-        console.log('click ', e);
-        this.setState({
-            current: e.key,
-        });
-    };
+	handleClick = (e) => {
+		console.log("click ", e);
+		this.setState({
+			current: e.key,
+		});
+	};
 
-    render() {
-        return (
-            <Header style={{
-                background: 'rgba(0, 0, 0, 0)',
-                padding: '0',
-                textAlign: 'center',
-                height: '48px',
-            }}>
-                <Menu
-                    onClick={this.handleClick}
-                    selectedKeys={[this.state.current]}
-                    mode="horizontal"
-                >
-                    <Menu.Item key="home">
-                        HOME
-                    </Menu.Item>
-                    <Menu.Item key="app">
-                        APP
-                        </Menu.Item>
-                    <Menu.Item key="docs">
-                        DOCS
-                    </Menu.Item>
-                    <Menu.Item key="about">
-                        ABOUT
-                    </Menu.Item>
-                    <Menu.Item key="link">
-                        LINK
-                    </Menu.Item>
-                </Menu>
-            </Header>
-        );
-    }
-};
+	render() {
+		return (
+			<Header
+				style={{
+					background: "rgba(0, 0, 0, 0)",
+					padding: "0",
+					textAlign: "center",
+					height: "48px",
+				}}
+			>
+				<Menu
+					onClick={this.handleClick}
+					selectedKeys={[this.state.current]}
+					mode="horizontal"
+				>
+					<Menu.Item key="home">HOME</Menu.Item>
+					<Menu.Item key="app">APP</Menu.Item>
+					<Menu.Item key="docs">DOCS</Menu.Item>
+					<Menu.Item key="about">ABOUT</Menu.Item>
+					<Menu.Item key="link">LINK</Menu.Item>
+				</Menu>
+			</Header>
+		);
+	}
+}
 
 export { NavBar };

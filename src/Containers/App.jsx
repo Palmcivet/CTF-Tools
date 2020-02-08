@@ -47,7 +47,7 @@ const App = () => (
 
         <footer style={{
             gridArea: '3 / 2 / 4 / 3',
-            placeSelf: 'center center',
+            placeSelf: 'center',
             textAlign: 'center',
         }}>
             {new Date().getFullYear()} &copy; {" Powered by Ant Design. "}

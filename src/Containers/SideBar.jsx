@@ -27,28 +27,18 @@ class rawSideBar extends Component {
                 <Menu
                     theme={this.state.theme}
                     onClick={this.handleClick}
-                    defaultOpenKeys={[SideTree[0][[0]]]}
+                    defaultOpenKeys={["0"]}
                     selectedKeys={[this.state.current]}
                     mode="inline"
                 >
-                    {SideTree.map((cluster) => (
-                        Array.isArray(cluster)
-                            ?
-                            <SubMenu key={cluster[0]} title={cluster[1]}>
-                                {Object.values(cluster[2]).map((item, index = 0) => (
-                                    // TODO: SideTree 设计不合理
-                                    <Menu.Item key={Object.keys(cluster[2])[index]}>
-                                        {item["TAG"]}
-                                    </Menu.Item>
-                                ))}
-                            </SubMenu>
-                            :
-                            Object.values(cluster).map((item, index = 0) => (
-                                // TODO: SideTree 设计不合理
-                                <Menu.Item key={Object.keys(cluster)[index]}>
-                                    {item["TAG"]}
+                    {Object.keys(SideTree).map((cluster, index) => (
+                        <SubMenu title={cluster} key={index}>
+                            {Object.keys(SideTree[cluster]).map((item) => (
+                                <Menu.Item key={item}>
+                                    {SideTree[cluster][item]["TAG"]}
                                 </Menu.Item>
-                            ))
+                            ))}
+                        </SubMenu>
                     ))}
                 </Menu>
             </div >
