@@ -23,7 +23,7 @@
 					>
 					</el-slider>
 
-					<el-table :data="roundsData[round - 1]">
+					<el-table :data="roundsData[round - 1]" stripe>
 						<el-table-column prop="Time" label="比赛时间"> </el-table-column>
 						<el-table-column prop="Home" label="主场"> </el-table-column>
 						<el-table-column prop="Away" label="客场"> </el-table-column>
@@ -83,52 +83,8 @@
 <script lang="ts">
 import { defineComponent, onBeforeMount, ref } from "@vue/runtime-core";
 
-interface IGameRound {
-	Time: string;
-	Home: string;
-	Away: string;
-	HAScore: string;
-}
-
-interface IRanking {
-	Name: string;
-	Total: number;
-	Win: number;
-	Draw: number;
-	Lose: number;
-	WinPoint: number;
-	LossPoint: number;
-	MarginPoints: number;
-	WinRate: number;
-	FlatRate: number;
-	LossRate: number;
-	AverageWin: number;
-	AverageLoss: number;
-	Score: number;
-}
-
-interface ILeagueItem {
-	Info: {
-		Id: string;
-		Name: string;
-		Contry: string;
-	};
-	Records: {
-		Season: string;
-		GameRounds: IGameRound[];
-		Ranking: IRanking[];
-	}[];
-}
-
-declare interface ICascaderOptions {
-	label: string;
-	value: number[];
-	children?: ICascaderOptions[];
-}
-
 export default defineComponent({
 	setup() {
-		// 联赛总表
 		const leagueList = ref<ILeagueItem[]>([]);
 
 		const roundsData = ref<IGameRound[]>([]);
