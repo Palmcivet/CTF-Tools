@@ -2,6 +2,7 @@
 	<div class="wrapper">
 		<el-row>
 			<el-col style="text-align: center; margin-bottom: 1em">
+				选择球员：
 				<el-select
 					v-model="selected"
 					filterable
@@ -23,7 +24,7 @@
 
 		<el-row style="height: calc(100% - 56px)">
 			<el-col :span="12" class="info-panel">
-				<el-card>
+				<el-card shadow="hover">
 					<el-form label-position="left" inline>
 						<el-form-item label="名字"> {{ playerInfo?.Name }} </el-form-item>
 						<el-form-item label="球衣号码"> {{ playerInfo?.JerseyNumber }} </el-form-item>
@@ -36,7 +37,7 @@
 					</el-form>
 				</el-card>
 
-				<el-card>
+				<el-card shadow="hover">
 					<el-table :data="playerHornor">
 						<el-table-column prop="Name" label="取得荣誉的名称"> </el-table-column>
 						<el-table-column prop="Number" label="取得荣誉的次数"> </el-table-column>
@@ -44,7 +45,7 @@
 					</el-table>
 				</el-card>
 
-				<el-card>
+				<el-card shadow="hover">
 					<el-form label-position="left" inline>
 						<el-form-item label="吃黄牌数">
 							{{ playerBase?.Yellow }}
@@ -254,6 +255,14 @@ export default defineComponent({
 	height: 100%;
 	flex-direction: column;
 	justify-content: space-around;
+}
+
+.el-form-item {
+	margin-bottom: 0;
+
+	::v-deep(.el-form-item__content) {
+		font-weight: 600;
+	}
 }
 
 .el-select {

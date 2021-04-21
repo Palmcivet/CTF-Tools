@@ -2,6 +2,7 @@
 	<div class="wrapper">
 		<el-row>
 			<el-col style="text-align: center; margin-bottom: 1em">
+				选择球队：
 				<el-select
 					v-model="selected"
 					filterable
@@ -23,7 +24,7 @@
 
 		<el-row style="height: calc(100% - 56px)" :gutter="30">
 			<el-col :span="10" class="info-panel">
-				<el-card>
+				<el-card shadow="hover">
 					<el-form label-position="left" inline>
 						<el-form-item label="球队名称"> {{ teamInfo?.TeamName }} </el-form-item>
 						<el-form-item label="球队标识符"> {{ teamInfo?.Id }} </el-form-item>
@@ -33,21 +34,17 @@
 					</el-form>
 				</el-card>
 
-				<el-card>
-					<ul>
-						<li v-for="(i, k) in teamInfo?.TeamCharacter.Advantage" :key="k">
-							{{ i }}
-						</li>
-					</ul>
-					<ul>
-						<li v-for="(i, k) in teamInfo?.TeamCharacter.Style" :key="k">{{ i }}</li>
-					</ul>
-					<ul>
-						<li v-for="(i, k) in teamInfo?.TeamCharacter.Weakness" :key="k">{{ i }}</li>
-					</ul>
+				<el-card shadow="hover" title="优势">
+					<li v-for="(i, k) in teamInfo?.TeamCharacter.Advantage" :key="k">{{ i }}</li>
+				</el-card>
+				<el-card shadow="hover" title="劣势">
+					<li v-for="(i, k) in teamInfo?.TeamCharacter.Weakness" :key="k">{{ i }}</li>
+				</el-card>
+				<el-card shadow="hover" title="特色">
+					<li v-for="(i, k) in teamInfo?.TeamCharacter.Style" :key="k">{{ i }}</li>
 				</el-card>
 
-				<el-card>
+				<el-card shadow="hover">
 					<el-table :data="teamPlayer">
 						<el-table-column prop="Name" label="名字"> </el-table-column>
 						<el-table-column prop="Position" label="球员位置"> </el-table-column>
@@ -167,8 +164,9 @@ export default defineComponent({
 				axisPointer: { type: "cross", crossStyle: { color: "#999" } },
 			},
 			grid: { left: "2%", right: "2%", bottom: "2%", containLabel: true },
-			xAxis: { type: "category", data: [], axisPointer: { type: "shadow" } },
+			xAxis: [{ type: "category", data: [], axisPointer: { type: "shadow" } }],
 			yAxis: [
+				{ type: "value" },
 				{ type: "value" },
 				{ type: "value" },
 				{ type: "value" },
@@ -195,7 +193,7 @@ export default defineComponent({
 				});
 			});
 
-			(chartBarOption.xAxis as any).data = [
+			(chartBarOption.xAxis as any)[0].data = [
 				...teamList.value[0].Last5.map((item) => item.League),
 			];
 
@@ -271,8 +269,25 @@ export default defineComponent({
 	height: 100%;
 }
 
+li {
+	margin-left: 1em;
+	list-style: circle;
+}
+
 .info-panel {
 	overflow: auto;
 	height: 100%;
+}
+
+.el-form-item {
+	margin-bottom: 0;
+
+	::v-deep(.el-form-item__content) {
+		font-weight: 600;
+	}
+}
+
+.el-select {
+	width: 40%;
 }
 </style>
