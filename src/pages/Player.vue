@@ -20,37 +20,19 @@
 				</el-select>
 			</el-col>
 		</el-row>
-		<el-row style="height: 100%">
-			<el-col
-				:span="12"
-				style="display: flex; flex-direction: column; justify-content: space-around"
-			>
+
+		<el-row style="height: calc(100% - 56px)">
+			<el-col :span="12" class="info-panel">
 				<el-card>
 					<el-form label-position="left" inline>
-						<el-form-item label="名字">
-							{{ playerInfo && playerInfo.Name }}
-						</el-form-item>
-						<el-form-item label="球衣号码">
-							{{ playerInfo && playerInfo.JerseyNumber }}
-						</el-form-item>
-						<el-form-item label="球员位置">
-							{{ playerInfo && playerInfo.Position }}
-						</el-form-item>
-						<el-form-item label="所在国家">
-							{{ playerInfo && playerInfo.Nationality }}
-						</el-form-item>
-						<el-form-item label="生日">
-							{{ playerInfo && playerInfo.Birthday }}
-						</el-form-item>
-						<el-form-item label="身高/cm">
-							{{ playerInfo && playerInfo.Height }}
-						</el-form-item>
-						<el-form-item label="体重/Kg">
-							{{ playerInfo && playerInfo.Weight }}
-						</el-form-item>
-						<el-form-item label="身价/万英镑">
-							{{ playerInfo && playerInfo.Worth }}
-						</el-form-item>
+						<el-form-item label="名字"> {{ playerInfo?.Name }} </el-form-item>
+						<el-form-item label="球衣号码"> {{ playerInfo?.JerseyNumber }} </el-form-item>
+						<el-form-item label="球员位置"> {{ playerInfo?.Position }} </el-form-item>
+						<el-form-item label="所在国家"> {{ playerInfo?.Nationality }} </el-form-item>
+						<el-form-item label="生日"> {{ playerInfo?.Birthday }} </el-form-item>
+						<el-form-item label="身高/cm"> {{ playerInfo?.Height }} </el-form-item>
+						<el-form-item label="体重/Kg"> {{ playerInfo?.Weight }} </el-form-item>
+						<el-form-item label="身价/万英镑"> {{ playerInfo?.Worth }} </el-form-item>
 					</el-form>
 				</el-card>
 
@@ -65,28 +47,28 @@
 				<el-card>
 					<el-form label-position="left" inline>
 						<el-form-item label="吃黄牌数">
-							{{ playerBase && playerBase.Yellow }}
+							{{ playerBase?.Yellow }}
 						</el-form-item>
 						<el-form-item label="吃红牌数">
-							{{ playerBase && playerBase.Red }}
+							{{ playerBase?.Red }}
 						</el-form-item>
 						<el-form-item label="球队贡献率 ID">
-							{{ playerBase && playerBase.ContributionRate }}
+							{{ playerBase?.ContributionRate }}
 						</el-form-item>
 						<el-form-item label="球员评分 ID">
-							{{ playerBase && playerBase.Score }}
+							{{ playerBase?.Score }}
 						</el-form-item>
 						<el-form-item label="首发上场次数">
-							{{ playerBase && playerBase.FirstNumber }}
+							{{ playerBase?.FirstNumber }}
 						</el-form-item>
 						<el-form-item label="替补上场次数">
-							{{ playerBase && playerBase.SubstituteNumber }}
+							{{ playerBase?.SubstituteNumber }}
 						</el-form-item>
 						<el-form-item label="首发上场进球数">
-							{{ playerBase && playerBase.FirstGoal }}
+							{{ playerBase?.FirstGoal }}
 						</el-form-item>
 						<el-form-item label="替补上场进球数">
-							{{ playerBase && playerBase.SubstituteGoal }}
+							{{ playerBase?.SubstituteGoal }}
 						</el-form-item>
 					</el-form>
 				</el-card>
@@ -142,25 +124,17 @@ export default defineComponent({
 		const chartEl = ref<HTMLElement>();
 		const chartRadar = ref<echarts.ECharts>();
 		const chartOption: echarts.EChartsOption = {
-			title: {
-				text: "球员信息比较",
-				top: "0",
-				left: "center",
-			},
-			legend: {
-				data: [],
-				bottom: "0",
-				left: "center",
-			},
+			title: { text: "球员信息比较", top: "0", left: "center" },
+			legend: { data: [], bottom: "0", left: "center" },
+			tooltip: {},
 			radar: [
 				{
 					indicator: [
-						{ text: "球队贡献率" },
-						{ text: "射门射正率" },
-						{ text: "传球成功率" },
+						{ text: "球队贡献率", min: 0, max: 1 },
+						{ text: "射门射正率", min: 0, max: 1 },
+						{ text: "传球成功率", min: 0, max: 1 },
 					],
-
-					center: ["50%", "25%"],
+					center: ["70%", "30%"],
 					radius: 100,
 					startAngle: 90,
 					shape: "circle",
@@ -180,22 +154,19 @@ export default defineComponent({
 					},
 					splitLine: { lineStyle: { color: "rgba(255, 255, 255, 0.5)" } },
 					axisLine: { lineStyle: { color: "rgba(255, 255, 255, 0.5)" } },
-					axisName: {
-						formatter: "【 {value} 】",
-						color: "#72ACD1",
-					},
+					axisName: { formatter: "【 {value} 】", color: "#72ACD1" },
 				},
 				{
-					indicator: [{ text: "争顶次数" }, { text: "解围次数" }],
-					center: ["50%", "75%"],
+					indicator: [
+						{ text: "争顶次数", min: 0, max: 1 },
+						{ text: "解围次数", min: 0, max: 1 },
+					],
+					center: ["30%", "70%"],
 					radius: 100,
 					shape: "circle",
 					splitLine: { lineStyle: { color: "#72ACD1" } },
 					axisLine: { lineStyle: { color: "#B8D3E4" } },
-					axisName: {
-						formatter: "【 {value} 】",
-						color: "#72ACD1",
-					},
+					axisName: { formatter: "【 {value} 】", color: "#72ACD1" },
 				},
 			],
 			series: [
@@ -221,6 +192,7 @@ export default defineComponent({
 
 			val.forEach((item, idx) => {
 				(chartOption.legend as any).data.push(playerList.value[item].Info.Name);
+
 				(chartOption.series as any)[0].data.push({
 					name: playerList.value[item].Info.Name,
 					value: [
@@ -231,6 +203,7 @@ export default defineComponent({
 					symbolSize: 5,
 					lineStyle: { type: style[idx] },
 				});
+
 				(chartOption.series as any)[1].data.push({
 					name: playerList.value[item].Info.Name,
 					value: [
@@ -241,6 +214,7 @@ export default defineComponent({
 					lineStyle: { type: style[idx] },
 				});
 			});
+
 			chartRadar.value?.setOption(chartOption);
 		};
 
@@ -272,6 +246,14 @@ export default defineComponent({
 	display: flex;
 	height: 100%;
 	flex-direction: column;
+}
+
+.info-panel {
+	display: flex;
+	overflow: auto;
+	height: 100%;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 .el-select {

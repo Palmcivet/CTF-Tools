@@ -95,19 +95,21 @@ declare interface IPlayer {
 	};
 }
 
-declare interface ITeamItem {
-	Info: {
-		TeamName: string;
-		Id: string;
-		City: string;
-		SetUpTime: string;
-		Coach: string;
-		TeamCharacter: {
-			Advantage: string[];
-			Style: string[];
-			Weakness: string[];
-		};
+declare interface ITeamInfo {
+	TeamName: string;
+	Id: string;
+	City: string;
+	SetUpTime: string;
+	Coach: string;
+	TeamCharacter: {
+		Advantage: string[];
+		Style: string[];
+		Weakness: string[];
 	};
+}
+
+declare interface ITeamItem {
+	Info: ITeamInfo;
 	RecentResults: {
 		Base: {
 			Total: number;
@@ -123,10 +125,11 @@ declare interface ITeamItem {
 		Attack: {
 			Possession: number;
 			Shot: number;
-			OnTarget: number;
-			TargetRate: number;
+			ShotSuccess: number;
+			ShotRate: number;
 			PassBall: number;
 			PassSuccess: number;
+			PassRate: number;
 			Dribbling: number;
 		};
 		Defense: {
@@ -141,7 +144,7 @@ declare interface ITeamItem {
 			Block: number;
 			Out: number;
 		};
-	};
+	}[];
 	PlayerList: IPlayer[];
 	Last5: {
 		League: string;
