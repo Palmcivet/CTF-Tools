@@ -61,7 +61,7 @@ declare interface IPlayerInfo {
 declare interface IPlayerHornor {
 	Name: string;
 	Number: string;
-	Year: string[];
+	Years: string[];
 }
 
 declare interface IPlayerBase {

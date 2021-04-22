@@ -114,10 +114,10 @@ export default defineComponent({
 			radar: [
 				{
 					indicator: [
-						{ text: "球队贡献率", max: 100 },
-						{ text: "射门射正率", max: 100 },
-						{ text: "传球成功率", max: 100 },
-						{ text: "争头球成功率", max: 100 },
+						{ text: "球队贡献率", max: 1 },
+						{ text: "射门射正率", max: 1 },
+						{ text: "传球成功率", max: 1 },
+						{ text: "争头球成功率", max: 1 },
 					],
 					center: ["50%", "50%"],
 					radius: 100,
@@ -154,7 +154,7 @@ export default defineComponent({
 		const chartBarEl = ref<HTMLElement>();
 		const chartBar = ref<echarts.ECharts>();
 		const chartBarOption: echarts.EChartsOption = {
-			title: { text: "最近 5 场比赛情况", top: "0", left: "left" },
+			title: { text: "最近 8 场比赛情况", top: "0", left: "left" },
 			legend: {
 				data: ["犯规", "黄牌", "红牌", "射门", "过人", "评分"],
 				left: "right",
@@ -163,6 +163,15 @@ export default defineComponent({
 				trigger: "axis",
 				axisPointer: { type: "cross", crossStyle: { color: "#999" } },
 			},
+			dataZoom: [
+				{
+					type: "slider",
+					startValue: 0,
+					endValue: 7,
+					brushSelect: false,
+					zoomLock: true,
+				},
+			],
 			grid: { left: "2%", right: "2%", bottom: "2%", containLabel: true },
 			xAxis: [{ type: "category", data: [], axisPointer: { type: "shadow" } }],
 			yAxis: [

@@ -39,9 +39,9 @@
 
 				<el-card shadow="hover">
 					<el-table :data="playerHornor">
-						<el-table-column prop="Name" label="取得荣誉的名称"> </el-table-column>
-						<el-table-column prop="Number" label="取得荣誉的次数"> </el-table-column>
-						<el-table-column prop="Year" label="取得荣誉的赛季"> </el-table-column>
+						<el-table-column prop="Name" label="荣誉名称"> </el-table-column>
+						<el-table-column prop="Number" label="次数" width="60"> </el-table-column>
+						<el-table-column prop="Years" label="赛季"> </el-table-column>
 					</el-table>
 				</el-card>
 
@@ -250,11 +250,8 @@ export default defineComponent({
 }
 
 .info-panel {
-	display: flex;
 	overflow: auto;
 	height: 100%;
-	flex-direction: column;
-	justify-content: space-around;
 }
 
 .el-form-item {
