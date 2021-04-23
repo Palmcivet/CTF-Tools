@@ -193,7 +193,7 @@ export default defineComponent({
 		};
 
 		const handleSelect = (val: number[]) => {
-			teamInfo.value = teamList.value[0].Info;
+			teamInfo.value = teamList.value[val[0]].Info;
 			teamList.value[0].PlayerList.forEach((player) => {
 				teamPlayer.value.push({
 					Name: player.Info.Name,
@@ -225,16 +225,19 @@ export default defineComponent({
 				...teamList.value[0].Last5.map((item) => item.Score),
 			];
 
+			(chartRadarOption.legend as any).data = [];
+			(chartRadarOption.series as any)[0].data = [];
+
 			val.forEach((item, idx) => {
 				(chartRadarOption.legend as any).data.push(teamList.value[item].Info.TeamName);
 
 				(chartRadarOption.series as any)[0].data.push({
 					name: teamList.value[item].Info.TeamName,
 					value: [
-						teamList.value[item].RecentResults[0].Base.WinRate,
-						teamList.value[item].RecentResults[0].Attack.ShotRate,
-						teamList.value[item].RecentResults[0].Attack.PassRate,
-						teamList.value[item].RecentResults[0].Defense.HeadRate,
+						teamList.value[item].RecentResults.Base.WinRate,
+						teamList.value[item].RecentResults.Attack.ShotRate,
+						teamList.value[item].RecentResults.Attack.PassRate,
+						teamList.value[item].RecentResults.Defense.HeadRate,
 					],
 					symbolSize: 5,
 					lineStyle: { type: ["solid", "dashed", "dotted"][idx] },

@@ -144,7 +144,7 @@ declare interface ITeamItem {
 			Block: number;
 			Out: number;
 		};
-	}[];
+	};
 	PlayerList: IPlayer[];
 	Last5: {
 		League: string;

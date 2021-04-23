@@ -191,6 +191,9 @@ export default defineComponent({
 			playerHornor.value = playerList.value[val[0]].Honor;
 			playerBase.value = playerList.value[val[0]].RecentResults.Base;
 
+			(chartOption.legend as any).data = [];
+			(chartOption.series as any)[0].data = [];
+
 			val.forEach((item, idx) => {
 				(chartOption.legend as any).data.push(playerList.value[item].Info.Name);
 
