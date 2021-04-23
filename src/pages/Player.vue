@@ -53,10 +53,10 @@
 						<el-form-item label="吃红牌数">
 							{{ playerBase?.Red }}
 						</el-form-item>
-						<el-form-item label="球队贡献率 ID">
+						<el-form-item label="球队贡献率">
 							{{ playerBase?.ContributionRate }}
 						</el-form-item>
-						<el-form-item label="球员评分 ID">
+						<el-form-item label="球员评分">
 							{{ playerBase?.Score }}
 						</el-form-item>
 						<el-form-item label="首发上场次数">
@@ -193,6 +193,7 @@ export default defineComponent({
 
 			(chartOption.legend as any).data = [];
 			(chartOption.series as any)[0].data = [];
+			(chartOption.series as any)[1].data = [];
 
 			val.forEach((item, idx) => {
 				(chartOption.legend as any).data.push(playerList.value[item].Info.Name);
