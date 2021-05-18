@@ -193,6 +193,7 @@ export default defineComponent({
 		};
 
 		const handleSelect = (val: number[]) => {
+			teamPlayer.value = [];
 			teamInfo.value = teamList.value[val[0]].Info;
 			teamList.value[0].PlayerList.forEach((player) => {
 				teamPlayer.value.push({
