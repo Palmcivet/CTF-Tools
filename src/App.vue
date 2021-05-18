@@ -2,7 +2,7 @@
 	<el-container>
 		<el-header>
 			<el-menu default-active="/banner" mode="horizontal" router>
-				<img alt="Vue logo" src="./assets/logo.png" />
+				<img alt="Vue logo" src="./assets/logo.png" class="logo" />
 				<el-menu-item v-for="(v, i) in table" :key="i" :index="v.index">
 					{{ v.title }}
 				</el-menu-item>
@@ -48,7 +48,7 @@ body {
 	height: 100%;
 }
 
-img {
+.logo {
 	margin-top: 7px;
 	margin-right: 5em;
 	width: 45px;

@@ -8,8 +8,8 @@
 		</el-row>
 
 		<el-row>
-			<el-col :span="12">
-				<el-card shadow="hover">
+			<el-col :span="20" :push="2">
+				<el-card shadow="always">
 					<div>场次信息</div>
 
 					<el-slider
@@ -30,10 +30,8 @@
 						<el-table-column prop="HAScore" label="主客场比分"> </el-table-column>
 					</el-table>
 				</el-card>
-			</el-col>
 
-			<el-col :span="12">
-				<el-card shadow="hover">
+				<el-card shadow="always">
 					<div>队伍排名</div>
 					<el-table :data="rankingData">
 						<el-table-column type="expand">

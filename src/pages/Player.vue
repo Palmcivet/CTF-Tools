@@ -23,8 +23,8 @@
 		</el-row>
 
 		<el-row style="height: calc(100% - 56px)">
-			<el-col :span="12" class="info-panel">
-				<el-card shadow="hover">
+			<el-col :span="20" :push="2" class="info-panel">
+				<el-card shadow="always">
 					<el-form label-position="left" inline>
 						<el-form-item label="名字"> {{ playerInfo?.Name }} </el-form-item>
 						<el-form-item label="球衣号码"> {{ playerInfo?.JerseyNumber }} </el-form-item>
@@ -37,7 +37,7 @@
 					</el-form>
 				</el-card>
 
-				<el-card shadow="hover">
+				<el-card shadow="always">
 					<el-table :data="playerHornor">
 						<el-table-column prop="Name" label="荣誉名称"> </el-table-column>
 						<el-table-column prop="Number" label="次数" width="60"> </el-table-column>
@@ -45,7 +45,7 @@
 					</el-table>
 				</el-card>
 
-				<el-card shadow="hover">
+				<el-card shadow="always">
 					<el-form label-position="left" inline>
 						<el-form-item label="吃黄牌数">
 							{{ playerBase?.Yellow }}
@@ -73,9 +73,9 @@
 						</el-form-item>
 					</el-form>
 				</el-card>
-			</el-col>
-			<el-col :span="12" style="height: 100%">
+
 				<section ref="chartEl" style="height: 100%"></section>
+				<section ref="chartEl_1" style="height: 100%"></section>
 			</el-col>
 		</el-row>
 	</div>
@@ -123,9 +123,11 @@ export default defineComponent({
 		});
 
 		const chartEl = ref<HTMLElement>();
+		const chartEl_1 = ref<HTMLElement>();
 		const chartRadar = ref<echarts.ECharts>();
+		const chartRadar_1 = ref<echarts.ECharts>();
 		const chartOption: echarts.EChartsOption = {
-			title: { text: "球员信息比较", top: "0", left: "center" },
+			title: { text: "进攻比较", top: "0", left: "center" },
 			legend: { data: [], bottom: "0", left: "center" },
 			tooltip: {},
 			radar: [
@@ -135,7 +137,7 @@ export default defineComponent({
 						{ text: "射门射正率", min: 0, max: 1 },
 						{ text: "传球成功率", min: 0, max: 1 },
 					],
-					center: ["70%", "30%"],
+					center: ["50%", "50%"],
 					radius: 100,
 					startAngle: 90,
 					shape: "circle",
@@ -157,12 +159,28 @@ export default defineComponent({
 					axisLine: { lineStyle: { color: "rgba(255, 255, 255, 0.5)" } },
 					axisName: { formatter: "【 {value} 】", color: "#72ACD1" },
 				},
+			],
+			series: [
+				{
+					type: "radar",
+					emphasis: { lineStyle: { width: 4 } },
+					data: [],
+				},
+			],
+		};
+
+		const chartOption_1: echarts.EChartsOption = {
+			title: { text: "防守比较", top: "0", left: "center" },
+			legend: { data: [], bottom: "0", left: "center" },
+			tooltip: {},
+			radar: [
 				{
 					indicator: [
-						{ text: "争顶次数", min: 0, max: 1 },
-						{ text: "解围次数", min: 0, max: 1 },
+						{ text: "争顶次数", min: 0, max: 3 },
+						{ text: "解围次数", min: 0, max: 3 },
+						{ text: "铲断次数", min: 0, max: 3 },
 					],
-					center: ["30%", "70%"],
+					center: ["50%", "50%"],
 					radius: 100,
 					shape: "circle",
 					splitLine: { lineStyle: { color: "#72ACD1" } },
@@ -171,11 +189,6 @@ export default defineComponent({
 				},
 			],
 			series: [
-				{
-					type: "radar",
-					emphasis: { lineStyle: { width: 4 } },
-					data: [],
-				},
 				{
 					type: "radar",
 					emphasis: { lineStyle: { width: 4 } },
@@ -193,7 +206,7 @@ export default defineComponent({
 
 			(chartOption.legend as any).data = [];
 			(chartOption.series as any)[0].data = [];
-			(chartOption.series as any)[1].data = [];
+			(chartOption_1.series as any)[0].data = [];
 
 			val.forEach((item, idx) => {
 				(chartOption.legend as any).data.push(playerList.value[item].Info.Name);
@@ -209,10 +222,11 @@ export default defineComponent({
 					lineStyle: { type: style[idx] },
 				});
 
-				(chartOption.series as any)[1].data.push({
+				(chartOption_1.series as any)[0].data.push({
 					name: playerList.value[item].Info.Name,
 					value: [
 						playerList.value[item].RecentResults.Defense.HeadingDuelRate,
+						playerList.value[item].RecentResults.Defense.ClearanceRate,
 						playerList.value[item].RecentResults.Defense.ClearanceRate,
 					],
 					symbolSize: 5,
@@ -221,20 +235,24 @@ export default defineComponent({
 			});
 
 			chartRadar.value?.setOption(chartOption);
+			chartRadar_1.value?.setOption(chartOption_1);
 		};
 
 		onMounted(() => {
 			chartRadar.value = echarts.init(chartEl.value as HTMLElement);
+			chartRadar_1.value = echarts.init(chartEl_1.value as HTMLElement);
 		});
 
 		onUnmounted(() => {
 			chartRadar.value?.dispose();
+			chartRadar_1.value?.dispose();
 		});
 
 		return {
 			selected,
 			playerOptions,
 			chartEl,
+			chartEl_1,
 
 			playerInfo,
 			playerHornor,

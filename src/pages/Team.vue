@@ -23,7 +23,7 @@
 		</el-row>
 
 		<el-row style="height: calc(100% - 56px)" :gutter="30">
-			<el-col :span="10" class="info-panel">
+			<el-col :span="20" :push="2" class="info-panel">
 				<el-card shadow="hover">
 					<el-form label-position="left" inline>
 						<el-form-item label="球队名称"> {{ teamInfo?.TeamName }} </el-form-item>
@@ -34,15 +34,17 @@
 					</el-form>
 				</el-card>
 
-				<el-card shadow="hover" title="优势">
-					<li v-for="(i, k) in teamInfo?.TeamCharacter.Advantage" :key="k">{{ i }}</li>
-				</el-card>
-				<el-card shadow="hover" title="劣势">
-					<li v-for="(i, k) in teamInfo?.TeamCharacter.Weakness" :key="k">{{ i }}</li>
-				</el-card>
-				<el-card shadow="hover" title="特色">
-					<li v-for="(i, k) in teamInfo?.TeamCharacter.Style" :key="k">{{ i }}</li>
-				</el-card>
+				<div style="display: flex; justify-content: space-between">
+					<el-card shadow="hover" title="优势">
+						<li v-for="(i, k) in teamInfo?.TeamCharacter.Advantage" :key="k">{{ i }}</li>
+					</el-card>
+					<el-card shadow="hover" title="劣势">
+						<li v-for="(i, k) in teamInfo?.TeamCharacter.Weakness" :key="k">{{ i }}</li>
+					</el-card>
+					<el-card shadow="hover" title="特色">
+						<li v-for="(i, k) in teamInfo?.TeamCharacter.Style" :key="k">{{ i }}</li>
+					</el-card>
+				</div>
 
 				<el-card shadow="hover">
 					<el-table :data="teamPlayer">
@@ -51,9 +53,7 @@
 						<el-table-column prop="Nationality" label="所在国家"> </el-table-column>
 					</el-table>
 				</el-card>
-			</el-col>
 
-			<el-col :span="14">
 				<section ref="chartRadarEl" style="height: 50%"></section>
 				<section ref="chartBarEl" style="height: 50%"></section>
 			</el-col>

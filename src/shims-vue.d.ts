@@ -166,3 +166,17 @@ declare interface ITeamItem {
 		Score: number;
 	}[];
 }
+
+declare interface INewsItem {
+	Time: string;
+	Title: string;
+	FirstPara: string;
+	Href: string;
+	Source: string;
+}
+
+declare interface ILinkItem {
+	Url: string;
+	Title: string;
+	Desc: string;
+}

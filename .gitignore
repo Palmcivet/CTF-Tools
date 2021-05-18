@@ -3,4 +3,5 @@ node_modules
 dist
 dist-ssr
 *.local
-data
+public/data
+public/img
